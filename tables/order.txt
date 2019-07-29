@@ -1,0 +1,4 @@
+dungeon_location
+dungeon_creator
+dungeon_purpose
+dungeon_history
