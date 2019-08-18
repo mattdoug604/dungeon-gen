@@ -1,27 +1,27 @@
-##NAME=dungeon_location			
-##LABEL=Dungeon Location			
-#weight	value	excludes	includes
-1	A building in a city		
-1	Catacombs or sewers beneath a city		
-1	Beneath a farmhouse		
-1	Beneath a graveyard		
-1	Beneath a ruined castle		
-1	Beneath a ruined city		
-1	Beneath a temple		
-1	In a chasm		
-1	In a cliff face		
-1	In a desert		
-1	In a forest		
-1	In a glacier		
-1	In a gorge		
-1	In a jungle		
-1	In a mountain pass		
-1	In a swamp		
-1	Beneath or on top of a mesa		
-1	In sea caves		
-1	In several connected mesas		
-1	On a mountain peak		
-1	On a promontory		
-1	On an island		
-1	Underwater		
-1	{exotic_location}		
+##NAME=dungeon_location				
+##LABEL=Dungeon Location				
+#weight	value	excludes	includes	source
+1	A building in a city			DMG p.99
+1	Catacombs or sewers beneath a city			DMG p.99
+1	Beneath a farmhouse			DMG p.99
+1	Beneath a graveyard			DMG p.99
+1	Beneath a ruined castle			DMG p.99
+1	Beneath a ruined city			DMG p.99
+1	Beneath a temple			DMG p.99
+1	In a chasm			DMG p.99
+1	In a cliff face			DMG p.99
+1	In a desert			DMG p.99
+1	In a forest			DMG p.99
+1	In a glacier			DMG p.99
+1	In a gorge			DMG p.99
+1	In a jungle			DMG p.99
+1	In a mountain pass			DMG p.99
+1	In a swamp			DMG p.99
+1	Beneath or on top of a mesa			DMG p.99
+1	In sea caves			DMG p.99
+1	In several connected mesas			DMG p.99
+1	On a mountain peak			DMG p.99
+1	On a promontory			DMG p.99
+1	On an island			DMG p.99
+1	Underwater			DMG p.99
+1	{exotic_location}			DMG p.99

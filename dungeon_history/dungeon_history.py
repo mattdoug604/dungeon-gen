@@ -12,9 +12,13 @@ with open(join(dirname(__file__), "tables", "order.txt"), "r") as fh:
 
 
 class Roll:
-    def __init__(self, weight, value, includes=None, excludes=None):
-        self.weight = float(weight)
-        self.value = value
+    def __init__(self, weight, value, includes=None, excludes=None, source=None):
+        self.value = value or ""
+        self.source = source or ""
+        if weight:
+            self.weight = float(weight)
+        else:
+            self.weight = 1.0
         if includes:
             self.includes = includes.split(" ")
         else:
@@ -23,7 +27,7 @@ class Roll:
             self.excludes = excludes.split(" ")
         else:
             self.excludes = excludes
-
+            
 
 class Table:
     def __init__(self, name, label, data, weights):

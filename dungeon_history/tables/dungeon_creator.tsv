@@ -1,15 +1,15 @@
-##NAME=dungeon_creator			
-##LABEL=Dungeon Creator			
-#weight	value	excludes	includes
-1	Beholder		
-3	{cults_and_religious_groups}		
-3	Dwarves		
-1	Elves (including drow)		
-1	Giants		
-1	Hobgoblins		
-3	Humans ({npc_alignments} {npc_classes})		
-1	Kuo-toa		
-1	Lich		
-1	Mind flayers		
-1	Yuan-ti		
-1	Natural caverns  {dungeon_purpose}		
+##NAME=dungeon_creator				
+##LABEL=Dungeon Creator				
+#weight	value	excludes	includes	source
+1	Beholder			DMG p.100
+3	{cults_and_religious_groups}			DMG p.100
+3	Dwarves			DMG p.100
+1	Elves (including drow)			DMG p.100
+1	Giants			DMG p.100
+1	Hobgoblins			DMG p.100
+3	Humans ({npc_alignments} {npc_classes})			DMG p.100
+1	Kuo-toa			DMG p.100
+1	Lich			DMG p.100
+1	Mind flayers			DMG p.100
+1	Yuan-ti			DMG p.100
+1	Natural caverns  {dungeon_purpose}			DMG p.100

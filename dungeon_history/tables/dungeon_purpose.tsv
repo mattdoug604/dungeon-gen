@@ -1,12 +1,12 @@
-##NAME=dungeon_purpose			
-##LABEL=Dungeon Purpose			
-#weight	value	excludes	includes
-1	Death trap		
-4	Lair		
-1	Maze		
-3	Mine		
-1	Planar gate		
-4	Stronghold		
-3	Temple or shrine		
-2	Tomb		
-1	Treasure vault		
+##NAME=dungeon_purpose				
+##LABEL=Dungeon Purpose				
+#weight	value	excludes	includes	source
+1	Death trap			DMG p.101
+4	Lair			DMG p.101
+1	Maze			DMG p.101
+3	Mine			DMG p.101
+1	Planar gate			DMG p.101
+4	Stronghold			DMG p.101
+3	Temple or shrine			DMG p.101
+2	Tomb			DMG p.101
+1	Treasure vault			DMG p.101

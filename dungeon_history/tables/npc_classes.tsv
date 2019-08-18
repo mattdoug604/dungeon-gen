@@ -1,15 +1,15 @@
-##NAME=npc_classes			
-##LABEL=NPC Class			
-#weight	value	excludes	includes
-1	Barbarian		
-1	Bard		
-2	Cleric		
-1	Druid		
-2	Fighter		
-1	Monk		
-1	Paladin		
-1	Ranger		
-4	Rogue		
-1	Sorcerer		
-1	Warlock		
-4	Wizard		
+##NAME=npc_classes				
+##LABEL=NPC Class				
+#weight	value	excludes	includes	source
+1	Barbarian			DMG p.101
+1	Bard			DMG p.101
+2	Cleric			DMG p.101
+1	Druid			DMG p.101
+2	Fighter			DMG p.101
+1	Monk			DMG p.101
+1	Paladin			DMG p.101
+1	Ranger			DMG p.101
+4	Rogue			DMG p.101
+1	Sorcerer			DMG p.101
+1	Warlock			DMG p.101
+4	Wizard			DMG p.101
