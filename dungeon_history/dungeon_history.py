@@ -67,28 +67,32 @@ class Table:
         return self.last_roll
 
 
+def main():
+    tables = {}
+    last_roll = {}
+    for path in TABLE_GLOB:
+        table = Table.load(path)
+        tables[table.name] = table
+        last_roll[table.name] = table.roll()[0]  # no recursion
 
-tables = {}
-last_roll = {}
-for path in TABLE_GLOB:
-    table = Table.load(path)
-    tables[table.name] = table
-    last_roll[table.name] = table.roll()[0]  # no recursion
+    queue = TABLE_ORDER
+    exclude = []
+    output = []
+    while queue:
+        i = queue.pop(0)
+        table = tables[i]
+        value, includes, excludes = tables[i].last_roll
+        value = value.format(**last_roll)
+        if includes:
+            queue = includes + queue
+        if excludes:
+            queue = [i for i in queue if i not in excludes]
+        output.append({table.label: value})
 
-queue = TABLE_ORDER
-exclude = []
-output = []
-while queue:
-    i = queue.pop(0)
-    table = tables[i]
-    value, includes, excludes = tables[i].last_roll
-    value = value.format(**last_roll)
-    if includes:
-        queue = includes + queue
-    if excludes:
-        queue = [i for i in queue if i not in excludes]
-    output.append({table.label: value})
+    for i in output:
+        for key, val in i.items():
+            print("{}: {}".format(key, val))
 
-for i in output:
-    for key, val in i.items():
-        print("{}: {}".format(key, val))
+
+if __name__ == "__main__":
+    main()
