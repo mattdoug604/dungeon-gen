@@ -1,16 +1,15 @@
-##NAME=dungeon_creator
-##DICE=20
-##LABEL=Dungeon Creator
-#min_roll	max_roll	value	excludes	includes
-1	1	Beholder
-2	4	{cults_and_religious_groups}		
-5	8	Dwarves
-9	9	Elves (including drow)
-10	10	Giants
-11	11	Hobgoblins
-12	15	Humans ({npc_alignments} {npc_classes})
-16	16	Kuo-toa
-17	17	Lich
-18	18	Mind flayers
-19	19	Yuan-ti
-20	20	Natural caverns  {dungeon_purpose}
+##NAME=dungeon_creator			
+##LABEL=Dungeon Creator			
+#weight	value	excludes	includes
+1	Beholder		
+3	{cults_and_religious_groups}		
+3	Dwarves		
+1	Elves (including drow)		
+1	Giants		
+1	Hobgoblins		
+3	Humans ({npc_alignments} {npc_classes})		
+1	Kuo-toa		
+1	Lich		
+1	Mind flayers		
+1	Yuan-ti		
+1	Natural caverns  {dungeon_purpose}		

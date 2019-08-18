@@ -8,7 +8,7 @@ setup(
     packages=find_packages(),
     description="Randomly generate the history of a fantasy dungeon including it's creator, location, purpose, and current state.",
     url="https://github.com/mattdoug604/dungeon-history.git",
-    python_requires=">=3",
+    python_requires=">=3.6",
     include_package_data=True,
     install_requires=[],
     entry_points={
