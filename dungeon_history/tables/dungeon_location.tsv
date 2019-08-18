@@ -1,28 +1,27 @@
-##NAME=dungeon_location
-##DICE=100
-##LABEL=Dungeon Location
-#min_roll	max_roll	value	excludes	includes
-1	4	A building in a city
-5	8	Catacombs or sewers beneath a city
-9	12	Beneath a farmhouse
-13	16	Beneath a graveyard
-17	22	Beneath a ruined castle
-23	26	Beneath a ruined city
-27	30	Beneath a temple
-31	34	In a chasm
-35	38	In a cliff face
-39	42	In a desert
-43	46	In a forest
-47	50	In a glacier
-51	54	In a gorge
-55	58	In a jungle
-59	62	In a mountain pass
-63	66	In a swamp
-67	70	Beneath or on top of a mesa
-71	74	In sea caves
-75	78	In several connected mesas
-79	82	On a mountain peak
-83	86	On a promontory
-87	90	On an island
-91	95	Underwater
-96	100	{exotic_location}
+##NAME=dungeon_location				
+##LABEL=Dungeon Location				
+#weight	value	excludes	includes	source
+1	A building in a city			DMG p.99
+1	Catacombs or sewers beneath a city			DMG p.99
+1	Beneath a farmhouse			DMG p.99
+1	Beneath a graveyard			DMG p.99
+1	Beneath a ruined castle			DMG p.99
+1	Beneath a ruined city			DMG p.99
+1	Beneath a temple			DMG p.99
+1	In a chasm			DMG p.99
+1	In a cliff face			DMG p.99
+1	In a desert			DMG p.99
+1	In a forest			DMG p.99
+1	In a glacier			DMG p.99
+1	In a gorge			DMG p.99
+1	In a jungle			DMG p.99
+1	In a mountain pass			DMG p.99
+1	In a swamp			DMG p.99
+1	Beneath or on top of a mesa			DMG p.99
+1	In sea caves			DMG p.99
+1	In several connected mesas			DMG p.99
+1	On a mountain peak			DMG p.99
+1	On a promontory			DMG p.99
+1	On an island			DMG p.99
+1	Underwater			DMG p.99
+1	{exotic_location}			DMG p.99

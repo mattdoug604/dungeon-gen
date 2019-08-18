@@ -12,10 +12,13 @@ with open(join(dirname(__file__), "tables", "order.txt"), "r") as fh:
 
 
 class Roll:
-    def __init__(self, min_roll, max_roll, value, includes=None, excludes=None):
-        self.min_roll = int(min_roll)
-        self.max_roll = int(max_roll)
-        self.value = value
+    def __init__(self, weight, value, includes=None, excludes=None, source=None):
+        self.value = value or ""
+        self.source = source or ""
+        if weight:
+            self.weight = float(weight)
+        else:
+            self.weight = 1.0
         if includes:
             self.includes = includes.split(" ")
         else:
@@ -24,14 +27,14 @@ class Roll:
             self.excludes = excludes.split(" ")
         else:
             self.excludes = excludes
-
+            
 
 class Table:
-    def __init__(self, name, label, dice, data):
+    def __init__(self, name, label, data, weights):
         self.name = name
         self.label = label
-        self.dice = dice
         self.data = data
+        self.weights = weights
 
     @classmethod
     def load(cls, path):
@@ -52,28 +55,29 @@ class Table:
                         keys[n] = i
                 else:
                     vals.append(_split(line))
-        
+
         name = header["NAME"]
         label = header["LABEL"]
-        dice = int(header["DICE"])
-        data = [Roll(**{keys[n]:x for n, x in enumerate(i)}) for i in vals]
+        data = [Roll(**{keys[n]: x for n, x in enumerate(i)}) for i in vals]
+        total = len(data)
+        weights = [i.weight / total for i in data]
 
-        return cls(name=name, label=label, dice=dice, data=data)
+        return cls(name=name, label=label, data=data, weights=weights)
 
     def roll(self):
-        num = random.randint(1, self.dice)
-        obj = [i for i in self.data if i.min_roll <= num <= i.max_roll][0]
-        self.last_roll = obj.value, obj.includes, obj.excludes
+        self.last_roll = random.choices(population=self.data, weights=self.weights)[0]
+
         return self.last_roll
 
 
 def main():
     tables = {}
-    last_roll = {}
+    preroll = {}
+
     for path in TABLE_GLOB:
         table = Table.load(path)
         tables[table.name] = table
-        last_roll[table.name] = table.roll()[0]  # no recursion
+        preroll[table.name] = table.roll().value
 
     queue = TABLE_ORDER
     exclude = []
@@ -81,8 +85,10 @@ def main():
     while queue:
         i = queue.pop(0)
         table = tables[i]
-        value, includes, excludes = tables[i].last_roll
-        value = value.format(**last_roll)
+        value = table.last_roll.value
+        includes = table.last_roll.includes
+        excludes = table.last_roll.excludes
+        value = value.format(**preroll)
         if includes:
             queue = includes + queue
         if excludes:
@@ -91,7 +97,7 @@ def main():
 
     for i in output:
         for key, val in i.items():
-            print("{}: {}".format(key, val))
+            print(f"{key}: {val}")
 
 
 if __name__ == "__main__":
