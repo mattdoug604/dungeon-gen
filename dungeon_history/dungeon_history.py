@@ -2,13 +2,13 @@
 
 import random
 import sys
+from collections import OrderedDict
 from glob import glob
 from os.path import dirname, join
 
 
-TABLE_GLOB = glob(join(dirname(__file__), "tables", "*.tsv"))
-with open(join(dirname(__file__), "tables", "order.txt"), "r") as fh:
-    TABLE_ORDER = [i.strip() for i in fh.readlines()]
+TABLE_DATA_DIR = join(dirname(__file__), "data")
+TABLE_ORDER_FILE = join(dirname(__file__), "data", "order.txt")
 
 
 class Roll:
@@ -27,7 +27,24 @@ class Roll:
             self.excludes = excludes.split(" ")
         else:
             self.excludes = excludes
-            
+
+
+class TableLoader:
+    @classmethod
+    def load(cls, data_dir=TABLE_DATA_DIR, order_file=TABLE_ORDER_FILE):
+        table_paths = cls._glob(data_dir)
+        tables_unsorted = [Table.load(path) for path in table_paths]
+        tables_sorted = cls._sort(tables_unsorted)
+        return {table.name: table for table in tables_sorted}
+
+    @classmethod
+    def _glob(cls, data_dir, ext=".tsv"):
+        return glob(join(data_dir, f"*{ext}"))
+
+    @classmethod
+    def _sort(cls, tables):
+        return sorted(tables, key=lambda table: table.name)
+
 
 class Table:
     def __init__(self, name, label, data, weights):
@@ -74,12 +91,15 @@ def main():
     tables = {}
     preroll = {}
 
-    for path in TABLE_GLOB:
-        table = Table.load(path)
-        tables[table.name] = table
-        preroll[table.name] = table.roll().value
+    tables = TableLoader.load()
+    preroll = {name: table.roll().value for name, table in tables.items()}
 
-    queue = TABLE_ORDER
+    if TABLE_ORDER_FILE:
+        with open(TABLE_ORDER_FILE, "r") as fh:
+            queue = [i.strip() for i in fh.readlines()]
+    else:
+        queue = sorted(table.name for table in tables)
+
     exclude = []
     output = []
     while queue:
