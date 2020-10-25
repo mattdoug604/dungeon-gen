@@ -13,20 +13,11 @@ TABLE_ORDER_FILE = join(dirname(__file__), "data", "order.txt")
 
 class Roll:
     def __init__(self, weight, value, includes=None, excludes=None, source=None):
-        self.value = value or ""
-        self.source = source or ""
-        if weight:
-            self.weight = float(weight)
-        else:
-            self.weight = 1.0
-        if includes:
-            self.includes = includes.split(" ")
-        else:
-            self.includes = includes
-        if excludes:
-            self.excludes = excludes.split(" ")
-        else:
-            self.excludes = excludes
+        self.weight = float(weight)
+        self.value = value
+        self.includes = includes.split(" ") if includes else None
+        self.excludes = excludes.split(" ") if excludes else None
+        self.source = source if source else ""
 
 
 class TableLoader:
