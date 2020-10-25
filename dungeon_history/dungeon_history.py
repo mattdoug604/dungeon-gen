@@ -114,11 +114,12 @@ def main():
             queue = includes + queue
         if excludes:
             queue = [i for i in queue if i not in excludes]
-        output.append({table.label: value})
+        output.append((table.label, value))
 
-    for i in output:
-        for key, val in i.items():
-            print(f"{key}: {val}")
+    left_spacing = max((len(i[0]) for i in output)) + 2
+    for key, val in output:
+        key_str = f"{key}: "
+        print(f"{key_str:{left_spacing}}{val}")
 
 
 if __name__ == "__main__":
