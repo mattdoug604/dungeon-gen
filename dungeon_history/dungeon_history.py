@@ -4,7 +4,7 @@ import random
 import sys
 from collections import OrderedDict
 from glob import glob
-from os.path import dirname, join
+from os.path import basename, dirname, join, splitext
 
 
 TABLE_DATA_DIR = join(dirname(__file__), "data")
@@ -47,6 +47,9 @@ class TableLoader:
 
 
 class Table:
+
+    default_keys = {0: "weight", 1: "value", 2: "excludes", 3: "includes", 4: "source"}
+
     def __init__(self, name, label, data, weights):
         self.name = name
         self.label = label
@@ -59,22 +62,29 @@ class Table:
         keys = {}
         vals = []
 
-        def _split(string, sep="\t"):
+        def capitalize(string):
+            return " ".join([i.capitalize() for i in string.split("_")])
+
+        def default_name():
+            return splitext(basename(path))[0]
+
+        def split_tsv(string, sep="\t"):
             return string.strip().split(sep)
 
         with open(path, "r") as fh:
             for line in fh:
                 if line.startswith("##"):
-                    header.update(dict([_split(line[2:], "=")]))
+                    header.update(dict([split_tsv(line[2:], "=")]))
                 elif line.startswith("#"):
                     line = line[1:]
-                    for n, i in enumerate(_split(line)):
+                    for n, i in enumerate(split_tsv(line)):
                         keys[n] = i
                 else:
-                    vals.append(_split(line))
+                    vals.append(split_tsv(line))
 
-        name = header["NAME"]
-        label = header["LABEL"]
+        name = header.get("NAME", default_name())
+        label = header.get("LABEL", capitalize(name))
+        keys = keys or cls.default_keys
         data = [Roll(**{keys[n]: x for n, x in enumerate(i)}) for i in vals]
         total = len(data)
         weights = [i.weight / total for i in data]
