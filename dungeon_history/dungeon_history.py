@@ -1,20 +1,16 @@
 #!/usr/bin/env python
-
 import random
-import sys
-from collections import OrderedDict
 from glob import glob
 from os.path import basename, dirname, join, splitext
-
 
 TABLE_DATA_DIR = join(dirname(__file__), "data")
 TABLE_ORDER_FILE = join(dirname(__file__), "data", "order.txt")
 
-DEFAULT_KEYS = ["value", "weight", "excludes", "includes", "source"]
+DEFAULT_COLUMNS = ["value", "weight", "excludes", "includes", "source"]
 
 
 class Roll:
-    def __init__(self, value, weight=None, includes=None, excludes=None, source=None):
+    def __init__(self, value, weight=None, includes=None, excludes=None, source=None, **kwargs):
         self.value = value
         self.weight = float(weight) if weight is not None else 0.0
         self.includes = includes.split(" ") if includes is not None else []
@@ -26,7 +22,7 @@ class TableLoader:
     @classmethod
     def load(cls, data_dir=TABLE_DATA_DIR, order_file=TABLE_ORDER_FILE):
         table_paths = cls._glob(data_dir)
-        tables_unsorted = [Table.load(path) for path in table_paths]
+        tables_unsorted = [Table.load_tsv(path) for path in table_paths]
         tables_sorted = cls._sort(tables_unsorted)
         return {table.name: table for table in tables_sorted}
 
@@ -45,21 +41,37 @@ class Table:
         self.label = label
         self.data = data
         self.weights = weights
+        self.last_roll = None
 
     @classmethod
-    def load(cls, path):
-        header = {}
-        keys = {}
-        vals = []
-
-        def capitalize(string):
-            return " ".join([i.capitalize() for i in string.split("_")])
-
+    def load_tsv(cls, path, label=None, name=None):
         def default_name():
             return splitext(basename(path))[0]
 
-        def split(string, sep="\t"):
-            return string.strip().split(sep)
+        def default_label():
+            return " ".join([i.capitalize() for i in default_name().split("_")])
+
+        header, columns, rows = cls._parse_tsv(path)
+        columns = columns or {n: i for n, i in enumerate(DEFAULT_COLUMNS)}
+        name = name or header.get("NAME") or default_name()
+        label = label or header.get("LABEL") or default_label()
+        data = []
+        for row in rows:
+            kwargs = {columns[n]: x if x != "" else None for n, x in enumerate(row)}
+            data.append(Roll(**kwargs))
+        total = len(data)
+        weights = [i.weight / total for i in data]
+
+        return cls(name=name, label=label, data=data, weights=weights)
+
+    @classmethod
+    def _parse_tsv(cls, path):
+        header = {}
+        columns = {}
+        rows = []
+
+        def split(line, sep="\t"):
+            return line.strip().split(sep)
 
         with open(path, "r") as fh:
             for line in fh:
@@ -68,18 +80,11 @@ class Table:
                 elif line.startswith("#"):
                     line = line[1:]
                     for n, i in enumerate(split(line)):
-                        keys[n] = i
+                        columns[n] = i
                 else:
-                    vals.append(split(line))
+                    rows.append(split(line))
 
-        name = header.get("NAME", default_name())
-        label = header.get("LABEL", capitalize(name))
-        keys = keys or {n: i for n, i in enumerate(DEFAULT_KEYS)}
-        data = [Roll(**{keys[n]: x for n, x in enumerate(i)}) for i in vals]
-        total = len(data)
-        weights = [i.weight / total for i in data]
-
-        return cls(name=name, label=label, data=data, weights=weights)
+        return header, columns, rows
 
     def roll(self):
         self.last_roll = random.choices(population=self.data, weights=self.weights)[0]
