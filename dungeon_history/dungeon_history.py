@@ -16,10 +16,10 @@ DEFAULT_KEYS = ["value", "weight", "excludes", "includes", "source"]
 class Roll:
     def __init__(self, value, weight=None, includes=None, excludes=None, source=None):
         self.value = value
-        self.weight = float(weight) if weight else 0.0
-        self.includes = includes.split(" ") if includes else None
-        self.excludes = excludes.split(" ") if excludes else None
-        self.source = source if source else ""
+        self.weight = float(weight) if weight is not None else 0.0
+        self.includes = includes.split(" ") if includes is not None else []
+        self.excludes = excludes.split(" ") if excludes is not None else []
+        self.source = source if source is not None else ""
 
 
 class TableLoader:
