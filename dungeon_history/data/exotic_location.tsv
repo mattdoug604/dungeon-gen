@@ -1,23 +1,23 @@
 ##NAME=exotic_location				
 ##LABEL=Exotic Location				
-#weight	value	excludes	includes	source
-1	Among the branches of a tree			DMG p.99
-1	Around a geyser			DMG p.99
-1	Behind a waterfall			DMG p.99
-1	Buried in an avalanche			DMG p.99
-1	Buried in a sandstorm			DMG p.99
-1	Buried in volcanic ash			DMG p.99
-1	Castle or structure sunken in a swamp			DMG p.99
-1	Castle or structure at the bottom of a sinkhole			DMG p.99
-1	Floating on the sea			DMG p.99
-1	In a meteorite			DMG p.99
-1	On a demiplane or in a pocket dimension			DMG p.99
-1	In an area devastated by a magical catastrophe			DMG p.99
-1	On a cloud			DMG p.99
-1	In the Feywild			DMG p.99
-1	In the Shadowfell			DMG p.99
-1	On an island in an underground sea			DMG p.99
-1	In a volcano			DMG p.99
-1	On the back of a Gargantuan living creature			DMG p.99
-1	Sealed inside a magical dome of force			DMG p.99
-1	Inside a Mordenkainen’s magnificent mansion			DMG p.99
+#value	weight	excludes	includes	source
+Among the branches of a tree	1			DMG p.99
+Around a geyser	1			DMG p.99
+Behind a waterfall	1			DMG p.99
+Buried in an avalanche	1			DMG p.99
+Buried in a sandstorm	1			DMG p.99
+Buried in volcanic ash	1			DMG p.99
+Castle or structure sunken in a swamp	1			DMG p.99
+Castle or structure at the bottom of a sinkhole	1			DMG p.99
+Floating on the sea	1			DMG p.99
+In a meteorite	1			DMG p.99
+On a demiplane or in a pocket dimension	1			DMG p.99
+In an area devastated by a magical catastrophe	1			DMG p.99
+On a cloud	1			DMG p.99
+In the Feywild	1			DMG p.99
+In the Shadowfell	1			DMG p.99
+On an island in an underground sea	1			DMG p.99
+In a volcano	1			DMG p.99
+On the back of a Gargantuan living creature	1			DMG p.99
+Sealed inside a magical dome of force	1			DMG p.99
+Inside a Mordenkainen’s magnificent mansion	1			DMG p.99

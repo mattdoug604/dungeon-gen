@@ -1,12 +1,12 @@
 ##NAME=dungeon_purpose				
 ##LABEL=Dungeon Purpose				
-#weight	value	excludes	includes	source
-1	Death trap			DMG p.101
-4	Lair			DMG p.101
-1	Maze			DMG p.101
-3	Mine			DMG p.101
-1	Planar gate			DMG p.101
-4	Stronghold			DMG p.101
-3	Temple or shrine			DMG p.101
-2	Tomb			DMG p.101
-1	Treasure vault			DMG p.101
+#value	weight	excludes	includes	source
+Death trap	1			DMG p.101
+Lair	4			DMG p.101
+Maze	1			DMG p.101
+Mine	3			DMG p.101
+Planar gate	1			DMG p.101
+Stronghold	4			DMG p.101
+Temple or shrine	3			DMG p.101
+Tomb	2			DMG p.101
+Treasure vault	1			DMG p.101

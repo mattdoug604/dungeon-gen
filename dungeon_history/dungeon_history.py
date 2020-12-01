@@ -10,11 +10,13 @@ from os.path import basename, dirname, join, splitext
 TABLE_DATA_DIR = join(dirname(__file__), "data")
 TABLE_ORDER_FILE = join(dirname(__file__), "data", "order.txt")
 
+DEFAULT_KEYS = ["value", "weight", "excludes", "includes", "source"]
+
 
 class Roll:
-    def __init__(self, weight, value, includes=None, excludes=None, source=None):
-        self.weight = float(weight)
+    def __init__(self, value, weight=None, includes=None, excludes=None, source=None):
         self.value = value
+        self.weight = float(weight) if weight else 0.0
         self.includes = includes.split(" ") if includes else None
         self.excludes = excludes.split(" ") if excludes else None
         self.source = source if source else ""
@@ -38,9 +40,6 @@ class TableLoader:
 
 
 class Table:
-
-    default_keys = {0: "weight", 1: "value", 2: "excludes", 3: "includes", 4: "source"}
-
     def __init__(self, name, label, data, weights):
         self.name = name
         self.label = label
@@ -59,23 +58,23 @@ class Table:
         def default_name():
             return splitext(basename(path))[0]
 
-        def split_tsv(string, sep="\t"):
+        def split(string, sep="\t"):
             return string.strip().split(sep)
 
         with open(path, "r") as fh:
             for line in fh:
                 if line.startswith("##"):
-                    header.update(dict([split_tsv(line[2:], "=")]))
+                    header.update(dict([split(line[2:], "=")]))
                 elif line.startswith("#"):
                     line = line[1:]
-                    for n, i in enumerate(split_tsv(line)):
+                    for n, i in enumerate(split(line)):
                         keys[n] = i
                 else:
-                    vals.append(split_tsv(line))
+                    vals.append(split(line))
 
         name = header.get("NAME", default_name())
         label = header.get("LABEL", capitalize(name))
-        keys = keys or cls.default_keys
+        keys = keys or {n: i for n, i in enumerate(DEFAULT_KEYS)}
         data = [Roll(**{keys[n]: x for n, x in enumerate(i)}) for i in vals]
         total = len(data)
         weights = [i.weight / total for i in data]
