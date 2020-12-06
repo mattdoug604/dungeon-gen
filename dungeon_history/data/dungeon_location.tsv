@@ -1,0 +1,27 @@
+##NAME=dungeon_location				
+##LABEL=Dungeon Location				
+#value	weight	excludes	includes	source
+A building in a city	1			DMG p.99
+Catacombs or sewers beneath a city	1			DMG p.99
+Beneath a farmhouse	1			DMG p.99
+Beneath a graveyard	1			DMG p.99
+Beneath a ruined castle	1			DMG p.99
+Beneath a ruined city	1			DMG p.99
+Beneath a temple	1			DMG p.99
+In a chasm	1			DMG p.99
+In a cliff face	1			DMG p.99
+In a desert	1			DMG p.99
+In a forest	1			DMG p.99
+In a glacier	1			DMG p.99
+In a gorge	1			DMG p.99
+In a jungle	1			DMG p.99
+In a mountain pass	1			DMG p.99
+In a swamp	1			DMG p.99
+Beneath or on top of a mesa	1			DMG p.99
+In sea caves	1			DMG p.99
+In several connected mesas	1			DMG p.99
+On a mountain peak	1			DMG p.99
+On a promontory	1			DMG p.99
+On an island	1			DMG p.99
+Underwater	1			DMG p.99
+{exotic_location}	1			DMG p.99

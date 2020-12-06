@@ -1,0 +1,12 @@
+##NAME=cults_and_religious_groups				
+##LABEL=Cult or Religious Group				
+#value	weight	excludes	includes	source
+Demon-worshiping cult	1			DMG p.100
+Devil-worshiping cult	1			DMG p.100
+Elemental Air cult	2			DMG p.100
+Elemental Earth cult	2			DMG p.100
+Elemental Fire cult	2			DMG p.100
+Elemental Water cult	2			DMG p.100
+Worshipers of an evil deity	3			DMG p.100
+Worshipers of a good deity	3			DMG p.100
+Worshipers of a neutral deity	3			DMG p.100

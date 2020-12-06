@@ -1,0 +1,15 @@
+##NAME=npc_classes				
+##LABEL=NPC Class				
+#value	weight	excludes	includes	source
+Barbarian	1			DMG p.101
+Bard	1			DMG p.101
+Cleric	2			DMG p.101
+Druid	1			DMG p.101
+Fighter	2			DMG p.101
+Monk	1			DMG p.101
+Paladin	1			DMG p.101
+Ranger	1			DMG p.101
+Rogue	4			DMG p.101
+Sorcerer	1			DMG p.101
+Warlock	1			DMG p.101
+Wizard	4			DMG p.101

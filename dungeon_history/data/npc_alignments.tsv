@@ -1,0 +1,12 @@
+##NAME=npc_alignments				
+##LABEL=NPC Alignment				
+#value	weight	excludes	includes	source
+Lawful Good	1			DMG p.100
+Neutral Good	1			DMG p.100
+Chaotic Good	1			DMG p.100
+Lawful Neutral	1			DMG p.100
+Neutral	1			DMG p.100
+Chaotic Neutral	1			DMG p.100
+Lawful Evil	1			DMG p.100
+Neutral Evil	1			DMG p.100
+Chaotic Evil	1			DMG p.100
